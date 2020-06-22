@@ -66,7 +66,7 @@ function createMap(earthquakes, faultlines) {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
     maxZoom: 18,
     id: "mapbox/streets-v11",
-    noWrap: true,
+    // noWrap: true,
     accessToken: API_KEY
   });
 
@@ -74,7 +74,7 @@ function createMap(earthquakes, faultlines) {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
     maxZoom: 18,
     id: "mapbox/satellite-v9",
-    noWrap: true,
+    // noWrap: true,
     accessToken: API_KEY
   });
 
@@ -82,7 +82,7 @@ function createMap(earthquakes, faultlines) {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
     maxZoom: 18,
     id: "mapbox/light-v10",
-    noWrap: true,
+    // noWrap: true,
     accessToken: API_KEY
   });
 
@@ -106,13 +106,13 @@ function createMap(earthquakes, faultlines) {
       37.09, -95.71
     ],
     zoom: 5, */
-    'center': [37.09, -95.71],
+    'center': [0,0],
     'zoom': 2.5,
     'minZoom': 1,
-    'maxBounds': [
-      [90,-180],
-      [-90, 180]
-    ],
+    // 'maxBounds': [
+    //   [90,-180],
+    //   [-90, 180]
+    // ],
     layers: [greyscalemap, earthquakes]
   });
 
@@ -121,18 +121,17 @@ function createMap(earthquakes, faultlines) {
   legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 1, 2, 3, 4, 5],
-        labels = [];
+        grades = [0, 1, 2, 3, 4, 5]
 
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
-            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+
+            '<i style="background: ' + getColor(grades[i]) + '"></i> ' +
             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
     }
-
     return div;
-};
+  };
 
 legend.addTo(myMap);
 
